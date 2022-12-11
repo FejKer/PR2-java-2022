@@ -7,7 +7,7 @@ public class Animal {
     final String species;
     String name;
     Boolean isAlive;
-    Double weight;
+    private Double weight;
 
     public Animal(String species){
         isAlive = true;
@@ -21,4 +21,25 @@ public class Animal {
         }
     }
 
+    void feed() {
+        if (!isAlive) {
+            System.out.println("Zwierze nie żyje, daj mu spokój");
+        } else {
+            weight += 1.0;
+            System.out.println("Nakarmiłeś zwierzaka");
+        }
+    }
+
+    void takeForAWalk() {
+        if (!isAlive) {
+            System.out.println("Zwierze nie żyje, daj mu spokój");
+        } else {
+            weight -= 1.0;
+            System.out.println("Wyprowadzasz zwierzaka na spacer");
+            if (weight <= 0.0) {
+                isAlive = false;
+                System.out.println("Zabiłeś je, ty potworze");
+            }
+        }
+    }
 }
