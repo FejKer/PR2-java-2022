@@ -1,4 +1,5 @@
 import devices.Car;
+import devices.Phone;
 
 public class Main {
     public static void main(String[] args) {
@@ -31,5 +32,8 @@ public class Main {
         System.out.println(porsche1.equals(porsche2));
         System.out.println(porsche1);
         System.out.println(porsche2);
+
+        Phone phone = new Phone("samsung", "galaxy s4", 2005);
+        phone.turnOn();
     }
 }
