@@ -1,10 +1,12 @@
+package devices;
+
 public class Car {
     String color;
     double mileage;
     boolean isRunning;
     final String make;
     final String model;
-    Double price;
+    public Double price;
 
     public Car(String color, double mileage, String make, String model){
         this.color = color;
@@ -21,5 +23,10 @@ public class Car {
     public void turnOff(){
         this.isRunning = false;
         System.out.println("You stop " + this.make + " " + this.model);
+    }
+
+    @Override
+    public String toString() {
+        return this.make + " " + this.model + " " + this.color + " " + this.mileage + " " + this.price;
     }
 }

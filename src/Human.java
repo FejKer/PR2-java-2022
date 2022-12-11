@@ -1,3 +1,5 @@
+import devices.Car;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -48,5 +50,10 @@ public class Human {
         } else {
             System.out.println("Znajdź lepszą robotę albo się doucz gościu");
         }
+    }
+
+    @Override
+    public String toString() {
+        return this.firstName + " " + this.lastName + " " + this.yearOfBirth + " " + this.salary;
     }
 }

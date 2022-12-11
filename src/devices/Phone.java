@@ -1,3 +1,5 @@
+package devices;
+
 public class Phone {
     final int yearOfProduction;
     final String brand;
@@ -10,4 +12,8 @@ public class Phone {
         this.yearOfProduction = yearOfProduction;
     }
 
+    @Override
+    public String toString() {
+        return this.brand + " " + this.model + " " + this.yearOfProduction;
+    }
 }
