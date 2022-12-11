@@ -5,7 +5,7 @@ public class Human {
     String firstName;
     String lastName;
     final Integer yearOfBirth;
-    Car car;
+    private Car car;
     Animal pet;
     private Double salary = 0.0;
     private LocalDateTime getSalaryDate = null;
@@ -33,5 +33,20 @@ public class Human {
         System.out.println("Smutni panowie ze skarbówki już jadą");
         this.salary = salary;
         System.out.println("Ustawiono nową wartość pensji: " + salary);
+    }
+
+    public Car getCar() {
+        return car;
+    }
+    public void setCar(Car car) {
+        if (this.salary > car.price) {
+            this.car = car;
+            System.out.println("Kupiono furkę za gotówe");
+        } else if (this.salary > car.price / 12) {
+            this.car = car;
+            System.out.println("Kupiono samochód na kredyt");
+        } else {
+            System.out.println("Znajdź lepszą robotę albo się doucz gościu");
+        }
     }
 }

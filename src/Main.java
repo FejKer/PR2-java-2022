@@ -11,13 +11,15 @@ public class Main {
         pet.feed();
 
         Car porsche = new Car("red", 2050.0, "Porsche", "Cayenne");
+        porsche.price = 120000.0;
         Human me = new Human(2002);
         me.firstName = "Oskar";
         me.lastName = "MigoFigoFago";
-        me.car = porsche;
         me.pet = pet;
+        me.setCar(porsche);
         System.out.println(me.getSalary());
-        me.setSalary(50000.0);
+        me.setSalary(10001.0);
         System.out.println(me.getSalary());
+        me.setCar(porsche);
     }
 }

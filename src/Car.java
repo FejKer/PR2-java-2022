@@ -4,6 +4,7 @@ public class Car {
     boolean isRunning;
     final String make;
     final String model;
+    Double price;
 
     public Car(String color, double mileage, String make, String model){
         this.color = color;
