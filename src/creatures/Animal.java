@@ -1,4 +1,8 @@
-public class Animal {
+package creatures;
+
+import main.Sellable;
+
+public class Animal implements Sellable {
     private static final double DEFAULT_DOG_WEIGHT = 10.5;
     private static final double DEFAULT_CAT_WEIGHT = 4;
     private static final double DEFAULT_ELEPHANT_WEIGHT = 700;
@@ -21,7 +25,7 @@ public class Animal {
         }
     }
 
-    void feed() {
+    public void feed() {
         if (!isAlive) {
             System.out.println("Zwierze nie żyje, daj mu spokój");
         } else {
@@ -30,7 +34,7 @@ public class Animal {
         }
     }
 
-    void takeForAWalk() {
+    public void takeForAWalk() {
         if (!isAlive) {
             System.out.println("Zwierze nie żyje, daj mu spokój");
         } else {
@@ -46,5 +50,18 @@ public class Animal {
     @Override
     public String toString() {
         return this.name + " " + this.species + " " + this.weight;
+    }
+
+    @Override
+    public void sell(Human buyer, Human seller, Double price) {
+        if (this.equals(seller.getPet()) && buyer.getCash() >= price) {
+            seller.setCash(seller.getCash() + price);
+            buyer.setCash(buyer.getCash() - price);
+            buyer.setPet(this);
+            seller.setPet(null);
+            System.out.println("Transakcja powiodła się");
+        } else {
+            System.out.println("Transakcja nie doszła do skutku");
+        }
     }
 }

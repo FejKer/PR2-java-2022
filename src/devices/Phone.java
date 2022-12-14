@@ -1,13 +1,17 @@
 package devices;
 
-public class Phone extends Device {
+import creatures.Human;
+import main.Sellable;
+
+public class Phone extends Device implements Sellable {
     boolean isAndroid;
     int chargeLevel;
 
-    public Phone(String producer, String model, int yearOfProduction) {
+    public Phone(String producer, String model, int yearOfProduction, boolean isAndroid) {
         this.producer = producer;
         this.model = model;
         this.yearOfProduction = yearOfProduction;
+        this.isAndroid = isAndroid;
     }
 
     @Override
@@ -39,5 +43,18 @@ public class Phone extends Device {
     @Override
     public String toString() {
         return this.producer + " " + this.model + " " + this.yearOfProduction;
+    }
+
+    @Override
+    public void sell(Human buyer, Human seller, Double price) {
+        if (this.equals(seller.getPhone()) && buyer.getCash() >= price) {
+            seller.setCash(seller.getCash() + price);
+            buyer.setCash(buyer.getCash() - price);
+            buyer.setPhone(this);
+            seller.setPhone(null);
+            System.out.println("Transakcja powiodła się");
+        } else {
+            System.out.println("Transakcja nie doszła do skutku");
+        }
     }
 }

@@ -1,5 +1,7 @@
 package devices;
 
+import creatures.Human;
+
 public abstract class Device {
     String producer;
     String model;
@@ -12,4 +14,5 @@ public abstract class Device {
     public String toString() {
         return this.producer + " " + this.model + " " + this.yearOfProduction;
     }
+
 }
