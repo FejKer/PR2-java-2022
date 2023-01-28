@@ -3,7 +3,7 @@ package devices;
 import creatures.Human;
 import main.Sellable;
 
-public class Car extends Device implements Sellable {
+public abstract class Car extends Device implements Sellable {
     private String color;
     private double mileage;
     private boolean isRunning;
@@ -40,6 +40,8 @@ public class Car extends Device implements Sellable {
         System.out.println("Śmigasz furką");
         mileage += 100.0;
     }
+
+    abstract void refuel();
 
     @Override
     public String toString() {

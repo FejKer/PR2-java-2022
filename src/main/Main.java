@@ -3,8 +3,7 @@ package main;
 import creatures.Animal;
 import creatures.Human;
 import creatures.Pet;
-import devices.Car;
-import devices.Phone;
+import devices.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,8 +17,8 @@ public class Main {
         pet.takeForAWalk();
         pet.feed();
 
-        Car porsche1 = new Car("red", 2050.0, "Porsche", "Cayenne");
-        Car porsche2 = new Car("red", 2050.0, "Porsche", "Cayenne");
+        Car porsche1 = new Electric("red", 2050.0, "Porsche", "Cayenne");
+        Car porsche2 = new LPG("red", 2050.0, "Porsche", "Cayenne");
         porsche1.setPrice(120000.0);
         porsche2.setPrice(120000.0);
         Human me = new Human(2002);
@@ -43,7 +42,7 @@ public class Main {
 
         System.out.println();
 
-        Car forSale = new Car("red", 1000.0, "Ford", "Fiesta");
+        Car forSale = new Diesel("red", 1000.0, "Ford", "Fiesta");
         forSale.setPrice(5000.0);
         Human seller = new Human(2000);
         Human buyer = new Human(2000);
