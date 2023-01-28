@@ -2,12 +2,13 @@ package main;
 
 import creatures.Animal;
 import creatures.Human;
+import creatures.Pet;
 import devices.Car;
 import devices.Phone;
 
 public class Main {
     public static void main(String[] args) {
-        Animal pet = new Animal("fenis");
+        Animal pet = new Pet("fenis");
         pet.feed();
         pet.takeForAWalk();
         pet.takeForAWalk();
@@ -46,7 +47,7 @@ public class Main {
         forSale.setPrice(5000.0);
         Human seller = new Human(2000);
         Human buyer = new Human(2000);
-        seller.setCar(forSale, true);
+        seller.setCar(forSale, true);               //true w celu wywołania przeciążonej metody setCar, która domyślnie sprawdza naszą pensję
         buyer.setCash(5000.0);
         forSale.sell(buyer, seller, 4000.0);
         System.out.println(seller.getCash() + " " + buyer.getCash());

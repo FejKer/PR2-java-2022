@@ -2,7 +2,7 @@ package creatures;
 
 import main.Sellable;
 
-public class Animal implements Sellable {
+public abstract class Animal implements Sellable, Feedable {
     private static final double DEFAULT_DOG_WEIGHT = 10.5;
     private static final double DEFAULT_CAT_WEIGHT = 4;
     private static final double DEFAULT_ELEPHANT_WEIGHT = 700;
@@ -63,5 +63,16 @@ public class Animal implements Sellable {
         } else {
             System.out.println("Transakcja nie doszła do skutku");
         }
+    }
+
+    @Override
+    public void feed(double foodWeight) {
+        weight += foodWeight;
+    }
+
+    @Override
+    public void beEaten() {
+        this.isAlive = false;
+        System.out.println("You eat " + species);
     }
 }
