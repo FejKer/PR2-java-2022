@@ -7,6 +7,7 @@ public abstract class Device {
     String model;
     int yearOfProduction;
     boolean isOn;
+    double value;
 
     public abstract void turnOn();
 

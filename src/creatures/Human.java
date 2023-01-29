@@ -10,7 +10,7 @@ public class Human {
     private String firstName;
     private String lastName;
     final Integer yearOfBirth;
-    private Car car;
+    private Car[] garage;
     private Phone phone;
     private Animal pet;
     private Double salary = 0.0;
@@ -18,8 +18,16 @@ public class Human {
     private Double previousSalary = 0.0;
     private Double cash = 0.0;
 
+    private static final int DEFAULT_GARAGE_SIZE = 5;
+
     public Human(Integer yearOfBirth){
         this.yearOfBirth = yearOfBirth;
+        garage = new Car[DEFAULT_GARAGE_SIZE];
+    }
+
+    public Human(Integer yearOfBirth, Integer garageSize){
+        this.yearOfBirth = yearOfBirth;
+        garage = new Car[garageSize];
     }
 
     public Double getSalary() {
@@ -42,22 +50,42 @@ public class Human {
         System.out.println("Ustawiono nową wartość pensji: " + salary);
     }
 
-    public Car getCar() {
-        return car;
+    public Car getCar(int parkingSpot) throws Exception {
+        if (parkingSpot < 0 || parkingSpot >= garage.length) {
+            throw new Exception("Nieprawidłowy indeks");
+        }
+        return garage[parkingSpot];
     }
-    public void setCar(Car car) {
-        if (this.salary > car.getPrice()) {
-            this.car = car;
+    public void setCar(Car car, int parkingSpot) throws Exception {
+        if (parkingSpot < 0 || parkingSpot >= garage.length || garage[parkingSpot] != null) {
+            throw new Exception("Nieprawidłowy indeks");
+        }
+        garage[parkingSpot] = car;
+/*
+        if (this.salary > car.getValue()) {
+            garage[parkingSpot] = car;
             System.out.println("Kupiono furkę za gotówe");
-        } else if (this.salary > car.getPrice() / 12) {
-            this.car = car;
+        } else if (this.salary > car.getValue() / 12) {
+            garage[parkingSpot] = car;
             System.out.println("Kupiono samochód na kredyt");
         } else {
             System.out.println("Znajdź lepszą robotę albo się doucz gościu");
         }
+        */
+
+
     }
-    public void setCar(Car car, boolean isForSale) {            //metoda do ustawiania samochodu do testowania funkcji sell()
-        this.car = car;
+    public void setCar(Car car, boolean isForSale, int parkingSpot) {            //metoda do ustawiania samochodu do testowania funkcji sell()
+        garage[parkingSpot] = car;
+    }
+
+    public Double getCarsWorth() {
+        double sum = 0;
+        for (Car c:
+             garage) {
+            sum += c.getValue();
+        }
+        return sum;
     }
 
     public Double getCash() {
@@ -107,5 +135,38 @@ public class Human {
     @Override
     public String toString() {
         return this.firstName + " " + this.lastName + " " + this.yearOfBirth + " " + this.salary;
+    }
+
+    public boolean hasACar(Car car) {
+        for (Car c:
+             garage) {
+            if (c.equals(car)) return true;
+        }
+        return false;
+    }
+
+    public boolean hasSpace() {
+        for (int i = 0; i < garage.length; i++) {
+            if (garage[i] == null) return true;
+        }
+        return false;
+    }
+
+    public void addCar(Car car) {
+        for (int i = 0; i < garage.length; i++) {
+            if (garage[i] == null) {
+                garage[i] = car;
+                return;
+            }
+        }
+    }
+
+    public void removeCar(Car car) {
+        for (int i = 0; i < garage.length; i++) {
+            if (garage[i] == car) {
+                garage[i] = null;
+                return;
+            }
+        }
     }
 }
