@@ -4,6 +4,9 @@ import creatures.Human;
 import main.Sellable;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Phone extends Device implements Sellable {
@@ -12,12 +15,14 @@ public class Phone extends Device implements Sellable {
     private static final String DEFAULT_HOST = "www.apps.com";
     private static final String DEFAULT_PROTOCOL = "https";
     private static final String DEFAULT_VERSION = "v1.0";
+    List<Application> applicationList;
 
     public Phone(String producer, String model, int yearOfProduction, boolean isAndroid) {
         this.producer = producer;
         this.model = model;
         this.yearOfProduction = yearOfProduction;
         this.isAndroid = isAndroid;
+        applicationList = new ArrayList<>();
     }
 
     @Override
@@ -25,6 +30,70 @@ public class Phone extends Device implements Sellable {
         System.out.println("Wciskasz przycisk");
         System.out.println("Czekasz");
         System.out.println("Telefon bangla");
+    }
+
+    public void installAnApp(Application application, Human phoneOwner) throws Exception {
+        if (phoneOwner.getCash() < application.price) throw new Exception("nie masz kaski");
+        applicationList.add(application);
+        phoneOwner.setCash(phoneOwner.getCash() - application.price);
+    }
+
+    public boolean checkIfAppIsInstalled(Application application) {
+        return applicationList.contains(application);
+    }
+
+    public boolean checkIfAppIsInstalled(String application) {
+        for (Application app:
+             applicationList) {
+            if (app.name.equals(application)) return true;
+        }
+        return false;
+    }
+
+    public void printFreeApps() {
+        for (Application app:
+             applicationList) {
+            if (app.price == 0) {
+                System.out.println("Darmowa aplikacja: " + app.name);
+            }
+        }
+    }
+
+    public Double getAppsWorth() {
+        Double sum = 0.0;
+        for (Application app:
+             applicationList) {
+            sum += app.price;
+        }
+        return sum;
+    }
+
+    public void printAppsByName() {
+        List<Application> apps = applicationList;
+        apps.sort(new Comparator<Application>() {
+            @Override
+            public int compare(Application o1, Application o2) {
+                return o1.name.compareTo(o2.name);
+            }
+        });
+        for (Application app:
+             apps) {
+            System.out.println("Aplikacja: " + app.name);
+        }
+    }
+
+    public void printAppsByPrice() {
+        List<Application> apps = applicationList;
+        apps.sort(new Comparator<Application>() {
+            @Override
+            public int compare(Application o1, Application o2) {
+                return o1.price.compareTo(o2.price);
+            }
+        });
+        for (Application app:
+                apps) {
+            System.out.println("Aplikacja: " + app.name + " cena: " + app.price);
+        }
     }
 
     public void chargePhone() {

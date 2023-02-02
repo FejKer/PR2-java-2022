@@ -7,7 +7,7 @@ import devices.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        Animal pet = new Pet("fenis");
+     /*   Animal pet = new Pet("fenis");
         pet.feed();
         pet.takeForAWalk();
         pet.takeForAWalk();
@@ -33,9 +33,6 @@ public class Main {
 
         System.out.println();
 
-        System.out.println(porsche1.equals(porsche2));
-        System.out.println(porsche1);
-        System.out.println(porsche2);
 
         Phone phone = new Phone("samsung", "galaxy s4", 2005, true);
         phone.turnOn();
@@ -57,6 +54,23 @@ public class Main {
         phone.sell(buyer, seller, 500.0);
         System.out.println(seller.getCash() + " " + buyer.getCash());
         System.out.println(seller.getPhone() + " " + buyer.getPhone());
+*/
+        System.out.println("=================================");
 
+        Phone phoneTest = new Phone("Samsung", "Galaxy", 2017, true);
+        Human humanTest = new Human(2010);
+        humanTest.setCash(1000.0);
+        Application free = new Application("FreeApp", "v1.0", 0.0);
+        Application paid = new Application("PaidApp", "v1.0", 10.0);
+        Application expensive = new Application("ExpensiveApp", "v1.0", 100.0);
+
+        phoneTest.installAnApp(free, humanTest);
+        phoneTest.installAnApp(paid, humanTest);
+        phoneTest.installAnApp(expensive, humanTest);
+
+        phoneTest.printAppsByName();
+        phoneTest.printAppsByPrice();
+        System.out.println(phoneTest.checkIfAppIsInstalled("FreeApp"));
+        System.out.println(phoneTest.checkIfAppIsInstalled(free));
     }
 }
